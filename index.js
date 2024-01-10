@@ -24,12 +24,12 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-
+const port = 5000;
 app.use(cors({origin: true}));
 app.use(express.json());
 
 const stripe = require("stripe")("sk_test_51OO3k1DisYtKipizYDN18dViPAYBC0ejWAlT04XnAzlSblPXEokcCm6rNrNunpbtgMCzteaR5xN34N4kNotcmmVf00VnObx4q9");
-console.log(stripe);
+// console.log(stripe);
 
 app.get("/", (request, response) => response.status(200).send("hello world"));
 
@@ -48,4 +48,7 @@ app.post("/payments/create", async (request, response) => {
 });
 
 // losten command
-exports.api = functions.https.onRequest(app);
+// exports.api = functions.https.onRequest(app);
+app.listen(port,()=>{
+  console.log(`listening to port`,port);
+})
